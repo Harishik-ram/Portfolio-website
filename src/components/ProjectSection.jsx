@@ -38,8 +38,8 @@ const projects = [
     "A modern personal portfolio website showcasing my projects, skills, and experience with a clean, responsive design.",
   image: "/projects/project2.png",
   tags: ["Vite", "Tailwind CSS"],
-  demoUrl: "https://your-portfolio-url.vercel.app/",
-  githubUrl: "https://github.com/Harishik-ram/your-portfolio-repo",
+  demoUrl: "https://harishik-portfolio.vercel.app/",
+  githubUrl: "https://github.com/Harishik-ram/Portfolio-website/tree/main",
 },
 
 ];
