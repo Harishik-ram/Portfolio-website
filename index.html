@@ -11,6 +11,25 @@
     rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>vite-project</title>
+
+  <script>
+    (function() {
+      try {
+        const savedTheme = localStorage.getItem('theme');
+        // Default to 'dark' if no preference is found
+        const theme = savedTheme || 'dark';
+        
+        if (theme === 'dark') {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      } catch (e) {
+        // Fallback to dark if localStorage fails
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
 </head>
 
 <body>
