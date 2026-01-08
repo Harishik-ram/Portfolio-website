@@ -24,64 +24,71 @@ export const Navbar = () => {
     }, []);
 
     return (
-        <nav className={cn(
-            "fixed w-full transition-all duration-300 z-50",
-            isScrolled
-                ? "py-3 bg-background/80 backdrop-blur-md shadow-xs"
-                : "py-5 bg-transparent"
-        )}>
-            <div className="container flex items-center justify-between">
-                <a
-                    className="text-xl font-bold text-primary flex items-center hover:text-primary/80 transition-colors duration-300"
-                    href="#hero"
-                >
-                    <span className="relative z-10">
-                        <span className="text-glow text-foreground">Harishik</span> Portfolio
-                    </span>
-                </a>
+        <>
+            <nav className={cn(
+                "fixed top-0 left-0 w-full transition-all duration-300 z-50 px-4",
+                isScrolled
+                    ? "py-3 bg-background/80 backdrop-blur-md shadow-sm border-b border-border"
+                    : "py-5"
+            )}>
+                <div className="container mx-auto flex items-center justify-between">
+                    {/* Logo/Brand */}
+                    <a
+                        href="#hero"
+                        className="text-xl font-bold text-primary flex items-center hover:text-primary/80 transition-colors duration-300"
+                        onClick={() => setIsMenuOpen(false)}
+                    >
+                        <span className="text-glow">
+                            <span className="text-foreground font-bold">Harishik</span>
+                            <span className="text-primary"> Portfolio</span>
+                        </span>
+                    </a>
 
-                {/* desktop navigation */}
-                <div className="hidden md:flex space-x-8">
-                    {navItems.map((item, index) => (
-                        <a
-                            key={index}
-                            href={item.href}
-                            className="text-foreground/80 hover:text-primary transition-colors duration-300 font-medium"
-                        >
-                            {item.name}
-                        </a>
-                    ))}
-                </div>
-
-                {/* Mobile Navigation */}
-
-                <button onClick={() => setIsMenuOpen((prev) => !prev)}
-                    className="md:hidden p-2 text-foreground z-50"
-                    aria-label={isMenuOpen ? "Close Menu" : "Open"}
-                >
-                    {isMenuOpen ? <X size={24} /> : <Menu size={24} />} </button>
-
-                <div className={cn("fixed inset-0 bg-background/95 backdrop-blur-md flex flex-col items-center justify-center",
-                    "transition-all duration-300 md:hidden",
-                    isMenuOpen ? "opacity-100 pointer-events-auto"
-                        : "opacity-0 pointer-events-none"
-
-                )}>
-                    <div className="flex flex-col space-y-8 text-xl">
+                    {/* Desktop Navigation */}
+                    <div className="hidden md:flex space-x-8">
                         {navItems.map((item, index) => (
                             <a
                                 key={index}
                                 href={item.href}
-                                className="text-foreground/80 hover:text-primary transition-colors duration-300 font-medium"
-                                onClick={() => setIsMenuOpen(false)}
+                                className="text-foreground/80 hover:text-primary transition-colors duration-300 font-medium px-3 py-2 rounded-lg hover:bg-primary/5"
                             >
                                 {item.name}
                             </a>
                         ))}
                     </div>
-                </div>
 
+                    {/* Mobile Menu Button */}
+                    <button
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                        className="md:hidden p-2 text-foreground z-50 hover:bg-primary/10 rounded-lg transition-colors"
+                        aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+                    >
+                        {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                    </button>
+                </div>
+            </nav>
+
+            {/* Mobile Menu Overlay */}
+            <div className={cn(
+                "fixed inset-0 bg-background/95 backdrop-blur-md flex flex-col items-center justify-center z-40 transition-all duration-300",
+                "md:hidden",
+                isMenuOpen
+                    ? "opacity-100 pointer-events-auto"
+                    : "opacity-0 pointer-events-none"
+            )}>
+                <div className="flex flex-col space-y-6 text-2xl">
+                    {navItems.map((item, index) => (
+                        <a
+                            key={index}
+                            href={item.href}
+                            className="text-foreground/80 hover:text-primary transition-colors duration-300 font-medium py-3 px-6 rounded-lg hover:bg-primary/10"
+                            onClick={() => setIsMenuOpen(false)}
+                        >
+                            {item.name}
+                        </a>
+                    ))}
+                </div>
             </div>
-        </nav>
+        </>
     );
 };
